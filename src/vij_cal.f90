@@ -19,6 +19,9 @@ IMPLICIT NONE
                 unew,dielnew,r0,u,vv
 
     real(kind=8)::rinv2,x1,y1,z1,x2,y2,z2,rr,rinv
+    ! jjren define
+    real(kind=8),allocatable :: hubbardU(:)
+    real(kind=8) :: averageU
 
 !
  vij=0.d0
@@ -45,11 +48,17 @@ IMPLICIT NONE
     
         if(ihampar == 1)then
         
-            rinv2=1.d0/(r0*r0)
-
+		! jjren different site have different hubbardU
+		open(unit=1001,file="hubbard.inp",status="old")
+		allocate(hubbardU(msite))
+		do i=1,msite,1
+			read(1001,*) hubbardU(i)
+			ii=(i*(i-1))/2+i
+			vij(ii)=hubbardU(i)
+		end do
+		close(1001)
+!
             do i=1,msite
-            
-                ii=(i*(i-1))/2+i
             
                 x1=rr_site(1,i)
                 y1=rr_site(2,i)
@@ -66,46 +75,41 @@ IMPLICIT NONE
                     rr=(abs(x1-x2))**2 &
                     +(abs(y1-y2))**2 &
                     +(abs(z1-z2))**2
-		    
-
-                
-                    vij(ij)=u/(diel*sqrt(1.d0+rr*rinv2))
+			! jjren
+			averageU=(hubbardU(i)+hubbardU(j))/2.0D0
+			vij(ij)=averageU/sqrt(1+averageU*averageU*rr/14.397D0/14.397D0)
                 
                 end do
-            
-            ! Onsite interaction is always Hubbard U
-            
-                vij(ii)=u
-            
             end do
-	    
-        
-            if(ichngcl > 0)then
-                rinv2=1.d0/(r0new*r0new)
-            
-                do i=1,natmic
-                    ii=itypec(i)
-                    x1=rr_site(1,ii)
-                    y1=rr_site(2,ii)
-                    z1=rr_site(3,ii)
-                    do j=1,natmjc
-                        jj=jtypec(j)
-                        iii=max(ii,jj)
-                        jjj=min(ii,jj)
-                        ij=(iii*(iii-1))/2+jjj
-                        x2=rr_site(1,jj)
-                        y2=rr_site(2,jj)
-                        z2=rr_site(3,jj)
-                    
-                        rr=(abs(x1-x2))**2 &
-                        +(abs(y1-y2))**2 &
-                        +(abs(z1-z2))**2
-                    
-                        vij(ij)=unew/(dielnew*sqrt(1.d0+rr*rinv2))
+		deallocate(hubbardU)
+!        
+!            if(ichngcl > 0)then
+!                rinv2=1.d0/(r0new*r0new)
+!            
+!                do i=1,natmic
+!                    ii=itypec(i)
+!                    x1=rr_site(1,ii)
+!                    y1=rr_site(2,ii)
+!                    z1=rr_site(3,ii)
+!                    do j=1,natmjc
+!                        jj=jtypec(j)
+!                        iii=max(ii,jj)
+!                        jjj=min(ii,jj)
+!                        ij=(iii*(iii-1))/2+jjj
+!                        x2=rr_site(1,jj)
+!                        y2=rr_site(2,jj)
+!                        z2=rr_site(3,jj)
+!                    
+!                        rr=(abs(x1-x2))**2 &
+!                        +(abs(y1-y2))**2 &
+!                        +(abs(z1-z2))**2
+!                    
+!                        vij(ij)=unew/(dielnew*sqrt(1.d0+rr*rinv2))
+!
+!                    end do
+!                end do
+!            end if
 
-                    end do
-                end do
-            end if
   
         ! Mataga-Nishimoto parameterization
         

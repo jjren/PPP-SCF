@@ -25,6 +25,8 @@ IMPLICIT NONE
       real(kind=8),intent(out)::tij((nsite*(nsite+1))/2),hij((nsite*(nsite+1))/2),&
           vij((nsite*(nsite+1))/2)
       real(kind=8),intent(inout)::enuc
+	! jjren defined every site core positive charge
+	real(kind=8),allocatable :: nuclQ(:)
           
  
     nij=(nsite*(nsite+1))/2
@@ -66,8 +68,14 @@ IMPLICIT NONE
       call vij_cal(vij,rr_site,nsite,natmic,natmjc,itypec,&
              jtypec,iham,ihampar,ichngcl,r0new,&
                 unew,dielnew,r0,u,vv,diel,ifcorc)
-    
 
+!     jjren suited for different core charge condition
+	open(unit=1002,file="nuclQ.inp",status="old")
+	allocate(nuclQ(nsite))
+	do i=1,nsite,1
+		read(1002,*) nuclQ(i)
+	end do
+	close(1002)
 ! Construct the full one-electron matrix Hij.
 
 ! First the on-site energies
@@ -79,14 +87,14 @@ IMPLICIT NONE
         do j=1,i-1
         
             ij=(i*(i-1))/2+j
-            hij(ii)=hij(ii)-vij(ij)
+            hij(ii)=hij(ii)-vij(ij)*nuclQ(j)
         
         end do
     
         do j=i+1,nsite
         
             ij=(j*(j-1))/2+i
-            hij(ii)=hij(ii)-vij(ij)
+            hij(ii)=hij(ii)-vij(ij)*nuclQ(j)
         
         end do
     
@@ -100,6 +108,7 @@ IMPLICIT NONE
         hij=hij+tij
   
 ! Add the contribution due to the external electric field, if needed
+! nucl energy
 
     if(iefield > 0)then
         do i=1,nsite
@@ -118,7 +127,7 @@ IMPLICIT NONE
     do i=1,nsite
         do j=1,i-1
             ij=(i*(i-1))/2+j
-            enuc=enuc+vij(ij)
+            enuc=enuc+vij(ij)*nuclQ(i)*nuclQ(j)
         end do
     end do
 
@@ -128,7 +137,7 @@ IMPLICIT NONE
     if(iefield > 0)then
         do i=1,nsite
             do j=1,3
-                enuc=enuc-efield(j)*rr_site(j,i)
+                enuc=enuc-efield(j)*rr_site(j,i)*nuclQ(i)
             end do
         end do
     end if
@@ -175,7 +184,7 @@ IMPLICIT NONE
     
     end if
 !    print*,'enuc=',enuc
-
+    deallocate(nuclQ)
     return
     end subroutine matel
 

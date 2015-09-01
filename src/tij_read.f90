@@ -39,46 +39,41 @@ IMPLICIT NONE
     write(*,*)' '
 
     do itij=1,ntij
-        read(*,*,err=102)x,nxij
-!	print*,'x,nxij',x,nxij
-        do ixij=1,nxij
-            read(*,*,err=103)i,j
-	
-            if(i <= nsite .AND. j <= nsite)then
-     
-                if(i >= j)then
-                    ij=ijpk(i,j)
-                    tij(ij)=x
-    
-                ! If more than one unit cell is there, generate rest of the hoppings
-                ! here
-                
-                    do iunit=2,nunit
-                        ii=i+(iunit-1)*natom
-                        jj=j+(iunit-1)*natom
-                        if(ii <= nsite .AND. jj <= nsite)then
-                            kl=ijpk(ii,jj)
-                            tij(kl)=x
-                        end if
+          ! jjren read bondlink hopping integral from input file like DMRG-X
+          read(*,*,err=103) i,j,x
+          if(i <= nsite .AND. j <= nsite)then
+   
+              if(i >= j)then
+                  ij=ijpk(i,j)
+                  tij(ij)=x
+  
+              ! If more than one unit cell is there, generate rest of the hoppings
+              ! here
+              
+                  do iunit=2,nunit
+                      ii=i+(iunit-1)*natom
+                      jj=j+(iunit-1)*natom
+                      if(ii <= nsite .AND. jj <= nsite)then
+                          kl=ijpk(ii,jj)
+                          tij(kl)=x
+                      end if
 
-                    end do
-                   
-                else
+                  end do
+                 
+              else
 
-                    write(*,*)'For itij,ixij=',itij,ixij
-                    write(*,*)'i,j=',i,j
-                    print*,'Error:Tij_read', &
-                    'Hopping connectivity in wrong order'
-                end if
-            
-            else
-            
-                write(*,*)'i,j',i,j
-                print*,'Error:Tij_Read','i and/or j value(s) out of bounds'
-            
-            end if
-        
-        end do
+                  write(*,*)'For itij,ixij=',itij,ixij
+                  write(*,*)'i,j=',i,j
+                  print*,'Error:Tij_read', &
+                  'Hopping connectivity in wrong order'
+              end if
+          
+          else
+          
+              write(*,*)'i,j',i,j
+              print*,'Error:Tij_Read','i and/or j value(s) out of bounds'
+          
+          end if
     
     end do
 
@@ -101,7 +96,6 @@ IMPLICIT NONE
 
  
 ! call PLBLK(tij,nsite,0,'fat',6)
-
     return
     end subroutine tij_read
 

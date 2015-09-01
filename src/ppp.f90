@@ -152,6 +152,10 @@ integer::iham=0,ihampar=0,irhf=0,iuhf=0,isci=0,iciprp=0,&
 	      print*,'SCREENED PARAMETERS ARE BEING USED'
 	   elseif(card(1:4)=='PARA')then
 	     read*,u,r0,diel
+	   elseif(card(1:3)=="NEW") then
+	      diel=1.d0
+	      print*,"NEW DEFINED PPP PARAMETERS"  ! suited for hetero atom like S
+	      ! u and r0 is no use now
 	   else
 	     print*,'THE ALLOWED INPUT IS STAND,SCR, OR PARA'
 	     print*,'BUT YOU GAVE',card

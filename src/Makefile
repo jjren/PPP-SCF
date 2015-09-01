@@ -7,13 +7,20 @@
 ###############################################################################
 #
 progname=ppp.x
-BINDIR=$(HOME)/bin
+BINDIR=$(PWD)/bin
 DIR=$(PWD)
-LAPACK=/opt/acml4.3.0/ifort64/lib/
+LAPACK=/opt/intel/mkl/lib/intel64
+KLROOT=/opt/intel/mkl
+MKLLIB=$(MKLROOT)/lib/intel64
+mklinc=$(MKLROOT)/include/intel64/lp64
+mklinc1=$(MKLROOT)/include
+
+FCCFLAG= -lmkl_blas95_lp64 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_lapack95_lp64 -liomp5 -lpthread -lm
+
 #
 # ############    Definitons of objectfiles    ###############
 #
-OBJECTS= \
+object= \
 $(DIR)/density.o $(DIR)/density_uhf.o $(DIR)/fockmat.o \
 $(DIR)/fockmat_uhf.o \
 $(DIR)/ijpk.o $(DIR)/matel.o $(DIR)/plblk.o \
@@ -39,35 +46,40 @@ $(DIR)/spctrm_1ex.o $(DIR)/tij_gen.o $(DIR)/c60_gen.o
 #
 FCOMP=ifort
 #FOPTIONS=-O  
-OPTS=-O
+OPTS= -debug -g
 #
 ################################################################################
 #                       rules                                                  #
 ################################################################################
+.SUFFIXES: .f90 .f
 #.f.o:
 #	$(FCOMP) $(FOPTIONS) -c  $< -o $@
 #%.o: %.f90
 #	$(FCOMP) $(FOPTIONS) -c  $< -o $@
 #
 #.f90.o:
-%.o: %.f90
-	$(FCOMP) $(OPTS) -c  $< -o $@    
+#%.o: %.f90
+#	$(FCOMP) $(OPTS) -c  $< -o $@ 
+%.o : %.f90
+	$(FCOMP) -c $(OPTS) -I/$(mklinc) -I/$(mklinc1) $<
 #
 ###############################################################################
 #			targets						     
 ###############################################################################
 #
-.DEFAULT: $(BINDIR)/$(progname)
-$(BINDIR)/$(progname): $(OBJECTS)    
-	@echo  'linking ' $(progname)
-	$(FCOMP) $(OPTS) $(OBJECTS)  -L$(LAPACK) -lacml -lacml_mv -o tmp.tmp
-	mv -f tmp.tmp $(BINDIR)/$(progname)
-	strip $(BINDIR)/$(progname)
-	@echo 'done'
+ppp.x : $(object)
+	$(FCOMP) -o $@ $^ -L$(MKLLIB) $(FCCFLAG)
+#.DEFAULT: $(BINDIR)/$(progname)
+#$(BINDIR)/$(progname): $(OBJECTS)    
+#	@echo  'linking ' $(progname)
+#	$(FCOMP) $(OPTS) $(OBJECTS)  -L$(MKLLIB) $(FCCFLAG) -o tmp.tmp
+#	mv -f tmp.tmp $(BINDIR)/$(progname)
+#	strip $(BINDIR)/$(progname)
+#	@echo 'done'
 clean:
-	@ rm -f $(DIR)/*.o  
+	@ rm -f $(DIR)/*.o ppp.x
 veryclean:
-	@ rm -f $(OBJECTS) *~
+	@ rm -f $(OBJECT) *~
 #tags:
 #	etags $(DIR)/*.{f,F} $(DIR1)/*.{f,F}  $(LIB)/*.{f,F} $(DIR4)/*.{f,F}
 #  
