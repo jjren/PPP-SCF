@@ -1,0 +1,246 @@
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=latex 2009.9.25)  6 OCT 2009 17:54
+entering extended mode
+ %&-line parsing enabled.
+**manual
+(./manual.tex
+LaTeX2e <2005/12/01>
+Babel <v3.8h> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, arabic, basque, bulgarian, coptic, welsh, czech, slovak, german, ng
+erman, danish, esperanto, spanish, catalan, galician, estonian, farsi, finnish,
+ french, greek, monogreek, ancientgreek, croatian, hungarian, interlingua, ibyc
+us, indonesian, icelandic, italian, latin, mongolian, dutch, norsk, polish, por
+tuguese, pinyin, romanian, russian, slovenian, uppersorbian, serbian, swedish, 
+turkish, ukenglish, ukrainian, loaded.
+(/usr/share/texmf/tex/latex/base/article.cls
+Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+(/usr/share/texmf/tex/latex/base/size10.clo
+File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texmf/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
+(/usr/share/texmf/tex/latex/base/inputenc.sty
+Package: inputenc 2006/05/05 v1.1b Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+(/usr/share/texmf/tex/latex/base/latin9.def
+File: latin9.def 2006/05/05 v1.1b Input encoding file
+))
+(/usr/share/texmf/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texmf/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks16
+\ex@=\dimen103
+))
+(/usr/share/texmf/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2002/01/22 v2.2d
+
+(/usr/share/texmf/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2001/10/25 v2.2f
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 132.
+))
+(/usr/share/texmf/tex/generic/babel/babel.sty
+Package: babel 2005/11/23 v3.8h The Babel package
+
+(/usr/share/texmf/tex/generic/babel/english.ldf
+Language: english 2005/03/30 v3.3o English support from the babel system
+
+(/usr/share/texmf/tex/generic/babel/babel.def
+File: babel.def 2005/11/23 v3.8h Babel common definitions
+\babel@savecnt=\count87
+\U@D=\dimen104
+)
+\l@british = a dialect from \language\l@english 
+\l@UKenglish = a dialect from \language\l@english 
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+)) (./manual.aux)
+\openout1 = `manual.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Try loading font information for U+msa on input line 14.
+
+(/usr/share/texmf/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2002/01/19 v2.2g AMS font definitions
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 14.
+
+(/usr/share/texmf/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2002/01/19 v2.2g AMS font definitions
+)
+
+LaTeX Warning: No \author given.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--79
+
+ []
+
+[1
+
+] [2]
+Underfull \hbox (badness 10000) in paragraph at lines 161--331
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--331
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--331
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--331
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--331
+
+ []
+
+[3] [4] [5] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 332--601
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--601
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--601
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--601
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--601
+
+ []
+
+[7] [8] [9] [10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 601--609
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 610--614
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 615--635
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 615--635
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 636--642
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 643--648
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 649--674
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 649--674
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 649--674
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 675--730
+
+ []
+
+
+Overfull \hbox (25.22313pt too wide) in paragraph at lines 675--730
+\T1/cmr/m/n/10 plify this task tremen-dously (\T1/cmr/m/it/10 cf. \T1/cmr/m/n/1
+0 ex-am-ple file trig-o-nal_zigzag_benzo6_uhf.dat). 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 675--730
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 675--730
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 675--730
+
+ []
+
+[13] [14] [15] (./manual.aux) ) 
+Here is how much of TeX's memory you used:
+ 1132 strings out of 256217
+ 11922 string characters out of 1917095
+ 71031 words of memory out of 1500000
+ 4436 multiletter control sequences out of 10000+200000
+ 14508 words of font info for 46 fonts, out of 1200000 for 2000
+ 645 hyphenation exceptions out of 8191
+ 25i,6n,24p,196b,197s stack positions out of 5000i,500n,6000p,200000b,15000s
+
+Output written on manual.dvi (15 pages, 33364 bytes).

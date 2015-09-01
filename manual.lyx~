@@ -1,0 +1,2910 @@
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Input Prepartion Guide for the Program ppp.x
+\end_layout
+
+\begin_layout Standard
+All the input data is written in the free format to minimize errors.
+ Therefore, before each important input card, there is a compulsory comment
+ line to make the input self explanatory.
+ It is irrelevant as to what is written in the comment lines, but, by writing
+ something meaningful, one can keep the input process transparent.
+ We do require that all the ASCII input cards (not the ones in the comment
+ lines) should be in uppercase letters.
+ To distinguish comment lines from the input, in this guide we precede each
+ comment line with the character '#', although in actual input files, that
+ is not necessary to use.
+ We encourage the user to compare the explanation provided here with the
+ actual input files available in the 'examples' subdirectory.
+ Next, we explain the preparation of input files card by card.
+ 
+\end_layout
+
+\begin_layout Enumerate
+The input file starts with a title.
+ Thus, the first line is for a title of the calculations.
+ A user can give a relevant title so as to provide an idea about the calculation
+ or system at the first glance.
+ 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+# Title 
+\end_layout
+
+\begin_layout Enumerate
+As the purpose of our code is to perform calculations using various semi-empiric
+al model Hamiltonians, the first input card is an ASCII card describing
+ the model Hamiltonian to be used for the calculations.
+ Options are: P-P-P, Hubbard, extended Hubbard, and Hückel.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ (a) For a system using P-P-P model, the input card may read:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ # The Hamiltonian to be used
+\begin_inset Newline newline
+\end_inset
+
+PPP 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(b) For a system using Hubbard model, the input card may read:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ # The Hamiltonian to be used
+\begin_inset Newline newline
+\end_inset
+
+HUBBARD
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(c) For a system using extended Hubbard model, the input card may read:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ # The Hamiltonian to be used
+\begin_inset Newline newline
+\end_inset
+
+EXTHUB 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(d) For a system using Hückel model, the input card may read:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ # The Hamiltonian to be used
+\begin_inset Newline newline
+\end_inset
+
+HUECKEL
+\end_layout
+
+\begin_layout Enumerate
+If P-P-P model Hamiltonian is to be used, one can use various parametrization.
+ Thus, our second card is also an ASCII card, stating which parametrization
+ is to use.
+ Options are: Ohno, Mataga-Nishimoto, and exponential parametrization.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ (a) For Ohno parametrization, the input card may read:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ # Parameterization for the P-P-P Hamiltonian
+\begin_inset Newline newline
+\end_inset
+
+OHNO
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(b) For Mataga-Nishimoto parametrization, the input card may read:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ # Parametrization for the P-P-P Hamiltonian
+\begin_inset Newline newline
+\end_inset
+
+MATNIS
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(c) For exponential parametrization, the input card may read:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ # Parametrization for the P-P-P Hamiltonian
+\begin_inset Newline newline
+\end_inset
+
+EXP
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The long-range Coulomb potentials in case of Ohno parametrization can be
+ parametrized using different sets of parameters, such as standard parameters
+ or screened parameters.
+ If STANDARD is given as input card, the program automatically takes 
+\begin_inset Formula $U$
+\end_inset
+
+=11.13d0, 
+\begin_inset Formula $r_{0}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+=1.2785884d0
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+, and 
+\begin_inset Formula $\kappa_{i,j}$
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+=1.d0
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+, while in case of input card SCREENED, it takes 
+\begin_inset Formula $U$
+\end_inset
+
+, 
+\begin_inset Formula $r_{0}$
+\end_inset
+
+, and 
+\begin_inset Formula $\kappa_{i,j}$
+\end_inset
+
+ as 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+8.d0,
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+1.2785884d0
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+, and 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+2.d0
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+, respectively.
+ However, one can also directly give the parameters.
+ If the user opts for Hubbard or extended Hubbard model, then parameters
+ should be provided explicitly.
+\begin_inset Newline newline
+\end_inset
+
+If Ohno parametrization is set as an option then the next card will be an
+ ASCII, mentioning the parameters to use.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ (a) For standard parameters, the input card may read:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ # Parameters for the Ohno parametrization in the P-P-P Hamiltonian
+\begin_inset Newline newline
+\end_inset
+
+STANDARD
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ (b) For screened parameters, the input card may read:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ # Parameters for the Ohno parametrization in the P-P-P Hamiltonian
+\begin_inset Newline newline
+\end_inset
+
+SCREENED
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ (c) For other parameters, the input card may read:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ # Parameters for the Ohno parametrization in the P-P-P Hamiltonian
+\begin_inset Newline newline
+\end_inset
+
+PARA
+\begin_inset Newline newline
+\end_inset
+
+11.d0,1.28d0,1.d0
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If the user wants to use other than Ohno parametrization such as Mataga-Nishimot
+o or exponential then one needs to just provide the values of 
+\begin_inset Formula $U$
+\end_inset
+
+ and 
+\begin_inset Formula $r_{0}$
+\end_inset
+
+.
+ For example,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ # Parameters for the Mataga-Nishimoto or exponential parametrization in
+ the P-P-P Hamiltonian
+\begin_inset Newline newline
+\end_inset
+
+11.d0, 1.28d0
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If one is using Hubbard model, the value for 
+\begin_inset Formula $U$
+\end_inset
+
+ should be given directly.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 11.d0
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ In case of extended Hubbard model calculations, the value for 
+\begin_inset Formula $U$
+\end_inset
+
+ and 
+\begin_inset Formula $V$
+\end_inset
+
+ (nearest neighbours potential) should also be given directly.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+11.d0,3.d0
+\begin_inset Newline newline
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Next card will read the electric charge (ionicity) on the system.
+ The magnitude of the nuclear charges have been defined as unity (
+\begin_inset Formula $=1$
+\end_inset
+
+).
+ For the neutral system the ionicity will be zero, and so on.
+ 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For example, in case of 
+\begin_inset Formula $trans$
+\end_inset
+
+-polyacetylene, the card will read as follows
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#Charge on the system
+\begin_inset Newline newline
+\end_inset
+
+0
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In order to handle a singly ionized cation the input is:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#Charge on the system
+\begin_inset Newline newline
+\end_inset
+
+1
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+while for a singly ionized anion, the input will be:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#Charge on the system
+\begin_inset Newline newline
+\end_inset
+
+-1
+\end_layout
+
+\begin_layout Enumerate
+As our code has been framed to handle mainly molecules and polymers, the
+ next input card will read the total number of atoms in the unit cell, after
+ the comment line.
+ 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ For example, if we are handling a system having two number of atoms in
+ the unit cell, then the card will read 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+# Total number of atoms in the unit cell
+\begin_inset Newline newline
+\end_inset
+
+2
+\end_layout
+
+\begin_layout Enumerate
+Next card deals with the Cartesian coordinates of the different atoms in
+ the unit cell, to be provided in the units of 
+\begin_inset Formula $\textrm{Å}$
+\end_inset
+
+.
+ We have two options to facilitate this: (a) Automatic generation through
+ various keywords, (b) by explicitly providing coordinates of each atom.
+ First we will describe the keywords involved in the automatic generation
+ of coordinates followed by one example illustrating their use.
+ 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ # Give the coordinates of the atoms involved in the system
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ (a) For example, for the benzene ring oriented in parallel direction to
+ the conventional orientation, in the 
+\begin_inset Formula $xy$
+\end_inset
+
+-plane, the input card may read:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ BEN-XY
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+In case of ring lying in 
+\begin_inset Formula $yz$
+\end_inset
+
+- or 
+\begin_inset Formula $zx$
+\end_inset
+
+-plane, one should give card as 'BEN-YZ' or 'BEN-ZX', respectively.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ The next card will specify the center of the benzene ring.
+ For example input, 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+-3.2725,0.575907,0.0
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+ 
+\begin_inset Newline newline
+\end_inset
+
+implies that the phenyl ring is centered at the point 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+(-3.2725,0.575907,0.0), in Cartesian coordinates
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+ .
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The next card must specify the bond length of the hexagon constituting the
+ phenyl ring and whether we need to rotate this ring with respect to some
+ axis.
+ For example input, 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+1.4,0
+\begin_inset Newline newline
+\end_inset
+
+implies that the bond length is 1.4 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AA
+\end_layout
+
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+and no rotations need to be performed on the ring.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If instead this input is like:
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+1.4,2 
+\begin_inset Newline newline
+\end_inset
+
+3,-90.d0
+\begin_inset Newline newline
+\end_inset
+
+ 2,30.d0
+\begin_inset Newline newline
+\end_inset
+
+which implies that the C--C bond length in the ring is 1.4 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AA
+\end_layout
+
+\end_inset
+
+, which will undergo two subsequent rotations.
+ First rotation is a clockwise one by 
+\begin_inset Formula $90^{\circ}$
+\end_inset
+
+ about the 
+\begin_inset Formula $z$
+\end_inset
+
+-axis, followed by second counter clockwise rotation by 
+\begin_inset Formula $30^{\circ}$
+\end_inset
+
+ about the 
+\begin_inset Formula $y$
+\end_inset
+
+-axis.
+ For example, in an entry of the type 3, -90.d0, first number denotes the
+ axis of the rotation, while the second number denotes the angle of the
+ rotation.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ (b) For a benzene ring oriented in perpendicular direction to the conventional
+ orientation, in the 
+\begin_inset Formula $xy$
+\end_inset
+
+-plane, the keyword will be:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+BENP-XY
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+and rest of the input will be identical to the case of BEN-XY, discussed
+ above.
+ 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(c) For generating a bond (a unit consisting of two atoms separated by a
+ distance) whose location is specified by the coordinates of the bond center,
+ the input card is:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+BOND
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ Next to this card, the user should specify origin, bond length and number
+ of rotations to be performed on the bond because by default the bond is
+ assumed to be along the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis.
+ Rotations, if desired, are performed keeping the center fixed.
+ Positive angles imply counter-clockwise rotations, while the negative angles
+ denote clockwise rotations.
+ For example input, 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+1.0,0.0,0.0
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+
+\begin_inset Newline newline
+\end_inset
+
+1.33,1
+\begin_inset Newline newline
+\end_inset
+
+3,-60.d0
+\begin_inset Newline newline
+\end_inset
+
+will initially generate a bond centered at the Cartesian coordinates (1.0,
+ 0.0, 0.0) of length 1.33 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AA
+\end_layout
+
+\end_inset
+
+ along the 
+\begin_inset Formula $x$
+\end_inset
+
+-axis, then subsequently it will be rotated with respect to the 
+\begin_inset Formula $z$
+\end_inset
+
+-axis by 
+\begin_inset Formula $60^{\circ}$
+\end_inset
+
+ angle (clockwise).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(d) For generating a bond whose first atom lies at the user specified location
+ (as against the center lying at the user specified location in case of
+ the BOND keyword), an alternative input card called LINE is provided:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+LINE
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ rest of the inputs are identical to those needed with the keyword BOND.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(e) Keyword ATOM is provided to generate a single atomic site located at
+ the user specified coordinates.
+ The input:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ATOM
+\begin_inset Newline newline
+\end_inset
+
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+0.0,0.0,0.0
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+
+\begin_inset Newline newline
+\end_inset
+
+will generate an atomic site located at the origin.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(f) A keyword C60 is provided to generate the atomic coordinates of a bond
+ alternating fullerene C
+\begin_inset Formula $_{60}$
+\end_inset
+
+.
+ For example the input,
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+C60
+\begin_inset Newline newline
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+1.45,1.35
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+
+\begin_inset Newline newline
+\end_inset
+
+1.0,1.0,1.0
+\begin_inset Newline newline
+\end_inset
+
+will generate the coordinated of 60 carbon atoms constituting a fullerene
+ molecule center located at point (1.0,1.0,1.0), with single and double bond
+ lengths, 1.45 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AA
+\end_layout
+
+\end_inset
+
+ and 1.35 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AA
+\end_layout
+
+\end_inset
+
+ respectively.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(g) If one does not want to use the above mentioned keywords and straight
+ away wants to provide Cartesian coordinates of all the atoms located in
+ the system, keyword COORD should be used.
+ For example input,
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+COORD
+\begin_inset Newline newline
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+0.0,0.0,0.0
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+
+\begin_inset Newline newline
+\end_inset
+
+1.4,0.0,0.0
+\begin_inset Newline newline
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+0.0,1.4,0.0
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+
+\begin_inset Newline newline
+\end_inset
+
+1.4,1.4,0.0
+\begin_inset Newline newline
+\end_inset
+
+will generate a system with four atoms located at positions (
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+0.0,0.0,0.0
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+), (1.4,0.0,0.0), (
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\noun off
+\color none
+0.0,1.4,0.0
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\noun default
+\color inherit
+), and (1.4,1.4,0.0).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(h) In all the cases the end of the inputs for the atomic coordinates generation
+ is signalled by the keyword ENDA.
+ 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ENDA
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Next we provide couple of examples of coordinate inputs which will illustrate
+ the use of these keywords.
+ The first example specifies the generation of the atomic coordinates of
+ a unit cell of the polymer phenyl disubstituted polyacetylene (PDPA), considere
+d in several of our papers (
+\emph on
+e.g.
+\emph default
+, P.
+ Sony and A.
+ Shukla, Phys.
+ Rev.
+ B 71 (2005) 165204.).
+ This input illustrates the use of the some of the keywords discussed above.
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+BEN-XY
+\begin_inset Newline newline
+\end_inset
+
+-0.577485,3.289479,0.0
+\begin_inset Newline newline
+\end_inset
+
+1.4,2
+\begin_inset Newline newline
+\end_inset
+
+3,-90.d0
+\begin_inset Newline newline
+\end_inset
+
+2,30.d0
+\begin_inset Newline newline
+\end_inset
+
+BOND
+\begin_inset Newline newline
+\end_inset
+
+0.0,0.0,0.0
+\begin_inset Newline newline
+\end_inset
+
+1.35,1
+\begin_inset Newline newline
+\end_inset
+
+3,-31.18125
+\begin_inset Newline newline
+\end_inset
+
+BEN-XY 
+\begin_inset Newline newline
+\end_inset
+
+0.577485,-3.289479,0.0
+\begin_inset Newline newline
+\end_inset
+
+1.4,2
+\begin_inset Newline newline
+\end_inset
+
+3,-90.d0
+\begin_inset Newline newline
+\end_inset
+
+2,30.d0
+\begin_inset Newline newline
+\end_inset
+
+ENDA
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The next example illustrates a case of a benzene ring centered at (-2.4248,1.4000,
+0.0000), where atomic coordinates are provided directly.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+COORD
+\begin_inset Newline newline
+\end_inset
+
+2.42480 -2.80000 0.00000
+\begin_inset Newline newline
+\end_inset
+
+-3.63720 -2.10000 0.00000
+\begin_inset Newline newline
+\end_inset
+
+-3.63720 -0.70000 0.00000
+\begin_inset Newline newline
+\end_inset
+
+-2.42480 0.00000 0.00000
+\begin_inset Newline newline
+\end_inset
+
+-1.21240 -0.70000 0.00000
+\begin_inset Newline newline
+\end_inset
+
+-1.21240 -2.10000 0.00000
+\begin_inset Newline newline
+\end_inset
+
+ENDA
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The next card is again an ASCII card, which will contain information regarding
+ the type of calculations one wants to perform.
+ 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+# Type of Calculations
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(a) For example, if one wants to do restricted Hartree-Fock calculations,
+ then the input card should be:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+RHF
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(b) In case of unrestricted Hartree-Fock calculations, the input card will
+ be:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+UHF
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For the UHF card above additional input specifying the number of up spin
+ (nalpha) and down spins (nbeta) electrons is essential
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#Number of up and down spin electrons
+\begin_inset Newline newline
+\end_inset
+
+7, 6
+\begin_inset Newline newline
+\end_inset
+
+The input above implies that the system contains 13 electrons in all, 7
+ of which are of up spin and remaining 6 of down spin.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(c) If followed by RHF calculations one wants to perform a single CI calculation
+, the corresponding input card is:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+SCI
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The following example illustrates a situation where both RHF and SCI calculation
+s are performed.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#TYPE OF CALCULATION
+\begin_inset Newline newline
+\end_inset
+
+RHF
+\begin_inset Newline newline
+\end_inset
+
+#SCI CALCULATIONS TO BE PERFORMED
+\begin_inset Newline newline
+\end_inset
+
+SCI 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(d) The input card OPTICS should be used when one wants to perform calculations
+ of linear optical absorption on the given system.
+ At present this card cannot be used with a UHF calculation.
+ Keyword OPTICS is to be followed by 
+\begin_inset Formula $d\omega$
+\end_inset
+
+,
+\begin_inset Formula $\omega_{min}$
+\end_inset
+
+,
+\begin_inset Formula $\omega_{max}$
+\end_inset
+
+,
+\begin_inset Formula $\Gamma$
+\end_inset
+
+, 
+\begin_inset Formula $scale$
+\end_inset
+
+, where 
+\begin_inset Formula $d\omega$
+\end_inset
+
+ , represents the frequency step, 
+\begin_inset Formula $\omega_{min}/\omega_{max}$
+\end_inset
+
+ represent minimum/maximum range of frequencies for which the spectrum is
+ to be computed, while 
+\begin_inset Formula $\Gamma$
+\end_inset
+
+ is the line width of the excited states, and 
+\begin_inset Formula $scale$
+\end_inset
+
+ is a number which can be used to convert the energy unit from the default
+ eVs to a unit of user's choice.
+ If the energy unit of eVs is to be used then this number can be given to
+ be 1.0, 0.0, or any negative number.
+ For single particle calculations such as Hückel model or RHF one needs
+ to specify that from how many reference states we want to compute the linear
+ absorption spectrum.
+ Thus, one can compute both the ground state, as well as excited state absorptio
+ns.
+ For excited states absorption, at present we are restricted to only those
+ excited states which can be obtained by single excitations from the ground
+ state.
+ The input format is:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#OPTICS TO BE PERFORMED
+\begin_inset Newline newline
+\end_inset
+
+OPTICS
+\begin_inset Newline newline
+\end_inset
+
+#Read the number of dipole moment components needed and line-width parameters
+\begin_inset Newline newline
+\end_inset
+
+3 # dimensions
+\begin_inset Newline newline
+\end_inset
+
+1,2,3 # directions
+\begin_inset Newline newline
+\end_inset
+
+0.1, 0.0, 10.0, 0.01, 1.0 # 
+\begin_inset Formula $\Gamma$
+\end_inset
+
+, 
+\begin_inset Formula $\omega_{min}$
+\end_inset
+
+,
+\begin_inset Formula $\omega_{max}$
+\end_inset
+
+, 
+\begin_inset Formula $d\omega$
+\end_inset
+
+, scale
+\begin_inset Newline newline
+\end_inset
+
+#From how many states one wants to compute linear absorption, '0' implies
+ ground state
+\begin_inset Newline newline
+\end_inset
+
+1 # no.
+ of states from which absorption will be computed
+\begin_inset Newline newline
+\end_inset
+
+0 # this implies that absorption is computed from the ground state
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If the state from which absorption is to be computed is not the ground state
+ but an excited state (
+\emph on
+i.e.
+\emph default
+, not '0', but '1'), then we need to specify the orbitals in which holes
+ and electrons exists to characterize the excited state in question.
+ The input will be: 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#From how many states one wants to compute linear absorption, '0' implies
+ ground state
+\begin_inset Newline newline
+\end_inset
+
+1 # no.
+ of states from which absorption will be computed
+\begin_inset Newline newline
+\end_inset
+
+1 # this implies that absorption is computed from the excited state
+\begin_inset Newline newline
+\end_inset
+
+4, 5 # excited state has a hole in orbital 4 and an electron in orbital
+ 5
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The above inputs specifies the linear absorption calculations in which all
+ the three Cartesian components of the transition dipole will be used and
+ the spectrum will be computed in the range from 0.0 to 10.0 eV in the steps
+ of 0.01 eV with a linewidth of 0.1 eV for the Hückel model or RHF calculations.
+ In the first case the absorption is from the ground state and in the second
+ case it is from an excited state.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If optical absorption spectrum is to be computed for an SCI calculations
+ then the input will be like: 
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+#TYPE OF CALCULATION 
+\begin_inset Newline newline
+\end_inset
+
+RHF 
+\begin_inset Newline newline
+\end_inset
+
+#SCI CALCULATIONS TO BE PERFORMED 
+\begin_inset Newline newline
+\end_inset
+
+SCI 
+\begin_inset Newline newline
+\end_inset
+
+#OPTICS TO BE PERFORMED 
+\begin_inset Newline newline
+\end_inset
+
+OPTICS 
+\begin_inset Newline newline
+\end_inset
+
+#GIVE THE NUMBER OF DIPOLE MOMENTS 
+\begin_inset Newline newline
+\end_inset
+
+3 #dimensions
+\begin_inset Newline newline
+\end_inset
+
+1 2 3 #directions
+\begin_inset Newline newline
+\end_inset
+
+0.1 0.0 20.0 0.01 1.0 # 
+\begin_inset Formula $\Gamma$
+\end_inset
+
+, 
+\begin_inset Formula $\omega_{min}$
+\end_inset
+
+,
+\begin_inset Formula $\omega_{max}$
+\end_inset
+
+, 
+\begin_inset Formula $d\omega$
+\end_inset
+
+, scale
+\begin_inset Newline newline
+\end_inset
+
+#Read the number of states and the states from which absorption is to be
+ computed 
+\begin_inset Newline newline
+\end_inset
+
+1 # no.
+ of states from which absorption will be computed
+\begin_inset Newline newline
+\end_inset
+
+1 # this implies that absorption is computed from the excited state, '0'
+ will imply the absorption from the ground state
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The absorption spectrum in all the cases is written in a file spec001.dat,
+ which can plotted using graphical programs such as gnuplot or xmgrace.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(e) If one wants to perform nonlinear optical (NLO) susceptibility calculations
+ within a single particle model such as Hückel model or RHF model, the occupied
+ and unoccupied orbital energies, as well as dipole matrix elements among
+ them are needed.
+ This data in turn can be provided to a separate computer program meant
+ for calculating various NLO susceptibilities.
+ By invoking the NLO card, the user can get the above mentioned data written
+ in a separate file called NLO001.DAT.
+ We had written a separate program (not provided with this package) meant
+ for computing these NLO susceptibilities for which file NLO001.DAT served
+ as an input.
+ The input in such a case will be: 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#NON LINEAR OPTICS TO BE PERFORMED
+\begin_inset Newline newline
+\end_inset
+
+NLO
+\begin_inset Newline newline
+\end_inset
+
+#Read the components of dipole moments
+\begin_inset Newline newline
+\end_inset
+
+2 # dimensions
+\begin_inset Newline newline
+\end_inset
+
+1,2 # directions
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In order to reduce the size of dipole matrix elements, one can delete the
+ outermost occupied and virtual orbitals choosing the card 'ORBDEL'.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+# Delete occupied and valence orbitals
+\begin_inset Newline newline
+\end_inset
+
+ORBDEL
+\begin_inset Newline newline
+\end_inset
+
+1,10 # delete occupied orbitals from 1 to 10
+\begin_inset Newline newline
+\end_inset
+
+21,30 # delete virtual orbitals from 21 to 30
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+As this is an essential card, so if in case no orbital has to be deleted,
+ then give the input card:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+NOORBDEL
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(f) Orbital charge density analysis can be done by giving input cards as:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ORBDEN
+\begin_inset Newline newline
+\end_inset
+
+0,2 #providing the density flag and no.
+ of sites.
+\begin_inset Newline newline
+\end_inset
+
+7,8 #site numbers for which the charge density is desired
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If '0' is assigned to the density flag, then only the specified sites will
+ be analyzed.
+ While if it is assigned a value '1', the sites given along with their periodic
+ copies will be analyzed.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(g) The band structure calculations can be performed using the Hückel model
+ Hamiltonian.
+ To opt for the band structure calculations, the input cards will be:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+BAND
+\begin_inset Newline newline
+\end_inset
+
+-1.0,1.0,0.01 #lower limit and upper limit of the 
+\begin_inset Formula $k$
+\end_inset
+
+-values (crystal momentum), and the differential step
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(h) If the user wants to perform post HF correlated calculations such as
+ FCI, QCI, or MRSDCI, etc., using some other computer program, various files
+ containing the data such as one- and two-electron integrals will be required.
+ The card CIPREP serves as the flag to the program to prepare these files,
+ which are written in the binary format.
+ Thus, the input card will be given as:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+CIPREP
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In case of UHF calculations one needs to specify first that which type of
+ orbitals will be used for the correlation treatment.
+ For this a flag is provided, whose value is assigned '1' for using the
+ alpha-type orbitals, and '2' for the beta-type orbitals.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+1
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If RHF calculations are to be performed then the above line should be skipped.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+User can also freeze the occupied orbitals and delete the virtual orbitals,
+ thus, can perform correlated calculations choosing a specified set of occupied
+ and virtual orbitals.
+ The input for this can be like this:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+12,0 # no.
+ of occupied orbitals to be frozen (1
+\begin_inset Formula $^{\text{st}}$
+\end_inset
+
+ twelve orbitals will be freezed), flag for freezing
+\begin_inset Newline newline
+\end_inset
+
+11,0 # no.
+ of virtual orbitals to be deleted, flag for deletion
+\begin_inset Newline newline
+\end_inset
+
+23,33 # from 23
+\begin_inset Formula $^{\text{rd}}$
+\end_inset
+
+ to 33
+\begin_inset Formula $^{\text{rd}}$
+\end_inset
+
+ orbital are to be deleted.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+If the electric dipole integrals are needed along with the CIPREP option
+ (possibly with the aim of performing optical properties calculations at
+ the correlated level), card DIPINT should be used.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+# Dipole moment calculation
+\begin_inset Newline newline
+\end_inset
+
+DIPINT
+\begin_inset Newline newline
+\end_inset
+
+#How many components of dipole moments
+\begin_inset Newline newline
+\end_inset
+
+2 # dimensions
+\begin_inset Newline newline
+\end_inset
+
+1,2 # directions
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+If no dipole integral calculation is desired, the input should be:
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+# Dipole moment calculation
+\begin_inset Newline newline
+\end_inset
+
+NODIPINT
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(i) The orbitals can be printed in the ASCII format in the output file by
+ using the card:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#To print the orbitals
+\begin_inset Newline newline
+\end_inset
+
+PRORB
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+However, this card should be used with caution because, for large systems,
+ the orbital related data can be huge.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(j) In order to calculate dielectric response properties or electro-absorption
+ spectrum, one needs to solve the HF equation in the presence of a finite
+ external electric field.
+ The input card for such calculations will be:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#Calculations to be performed in the presence of finite electric field
+\begin_inset Newline newline
+\end_inset
+
+EFIELD
+\begin_inset Newline newline
+\end_inset
+
+0.001 0.0 0.0 #components of electric field in 
+\begin_inset Formula $x$
+\end_inset
+
+, 
+\begin_inset Formula $y$
+\end_inset
+
+, and 
+\begin_inset Formula $z$
+\end_inset
+
+-directions, respectively.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The numbers specifying the components of the external electric field above
+ are in the units of V/
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+AA
+\end_layout
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+(k) After specifying all the methods which are to be used during the calculation
+s, the end of this input is specified by the following card:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#End Method Card
+\begin_inset Newline newline
+\end_inset
+
+ENDM
+\end_layout
+
+\begin_layout Enumerate
+Next card provides the total number of unit cells and should be a positive
+ integer.
+ For example, for generating an oligomer with eight units (unit cell coordinate
+ input is specified above), the input will read:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#Total number of units
+\begin_inset Newline newline
+\end_inset
+
+8
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+If the number of units cells specified in the previous card is greater than
+ one, translational vector needs to be provided as of the type below:
+\begin_inset Newline newline
+\end_inset
+
+2.4253866 0.0 0.0
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Atomic operations such as atom deletion can also be used while generating
+ a given molecule.
+ This operation is useful when for a system containing more than one unit
+ cell, periodic copies lead to more atoms in the system than what is needed.
+ For example, for oligomers of polymers such as PPV and polyacenes, this
+ is usually the case.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For the case of naphthalene atom numbers 11 and 12 need to be deleted (
+\emph on
+cf.
+
+\emph default
+ example input files acene2_ciprep_orbden.dat).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#If any atomic operations (such as atom deletion) need to be performed 
+\begin_inset Newline newline
+\end_inset
+
+DELATOM
+\begin_inset Newline newline
+\end_inset
+
+2 # number of atoms to be deleted
+\begin_inset Newline newline
+\end_inset
+
+11, 12 # atom numbers 11 and 12 are deleted
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#If no atom is to be deleted, the input card should be given as: 
+\begin_inset Newline newline
+\end_inset
+
+NODELATOM
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The convergence threshold set by the user to achieve convergence in total
+ energy in the units of eV, will be given as: 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#Convergence threshold
+\begin_inset Newline newline
+\end_inset
+
+1.D-8
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The maximum number of iterations allowed to achieve convergence can be given
+ as follows: 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+# Maximum iterations allowed
+\begin_inset Newline newline
+\end_inset
+
+100
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Sometimes, because of the oscillatory nature of total energy during the
+ SCF iterations it becomes difficult to achieve convergence.
+ However, in those cases one usually utilizes the techniques of Fock matrix
+ mixing (which is also popularly called damping).
+ This can be invoked by the keyword DAMP to be followed by the input value
+ of parameter 
+\begin_inset Formula $xdamp$
+\end_inset
+
+, which denotes the fractional amount of damping used in the formula explained
+ below.
+ 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $F^{(i)}=xdamp\: F^{(i)}+(1-xdamp)\: F^{(i-1)}$
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+where 
+\begin_inset Formula $F^{(i)}$
+\end_inset
+
+ is the Fock matrix in the i-th iteration, where 
+\begin_inset Formula $0\leqq xdamp\leqq1$
+\end_inset
+
+.
+ 
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+For example, if one intends to use 
+\begin_inset Formula $50\%$
+\end_inset
+
+ mixing the input will read:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#DAMPING WILL BE USED
+\begin_inset Newline newline
+\end_inset
+
+DAMP
+\begin_inset Newline newline
+\end_inset
+
+0.5
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+if in case no Fock matrix mixing is required, then the input file reads,
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+# NO DAMPING TO BE USED
+\begin_inset Newline newline
+\end_inset
+
+NODAMP 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Next input consists of data related to the hopping matrix elements.
+ The input differs slightly for finite systems as compared to the case when
+ band structure for an infinite polymer is desired within the Hückel model.
+ For finite systems one has the option of explicitly providing the hopping
+ matrix elements or for their automatic generation by attaching a given
+ hopping value with a certain bond distance.
+ Below we provide examples to illustrate all the three cases.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+First we present the example input associated with the band structure calculatio
+n of the polymer PPP, within the Hückel model (
+\emph on
+cf.
+
+\emph default
+ example file ppp_band.dat)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#Read the no.
+ of unique intracell and intercell hopping matrix elements
+\begin_inset Newline newline
+\end_inset
+
+1 1 #number of unique intracell and intercell hoppings
+\begin_inset Newline newline
+\end_inset
+
+-2.4,6 # value of intracell hopping and number of site pairs connected by
+ it 
+\begin_inset Newline newline
+\end_inset
+
+2,1 
+\begin_inset Newline newline
+\end_inset
+
+3,1 
+\begin_inset Newline newline
+\end_inset
+
+4,2 
+\begin_inset Newline newline
+\end_inset
+
+5,3 
+\begin_inset Newline newline
+\end_inset
+
+6,4 
+\begin_inset Newline newline
+\end_inset
+
+6,5 
+\begin_inset Newline newline
+\end_inset
+
+-2.23,1 # value of intercell hopping and its connectivity 
+\begin_inset Newline newline
+\end_inset
+
+6,1,1 # site pair which is connected by it, followed by the primitive vector
+ of the cell
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Next we present the example of a bond alternated polyene oligomer, made
+ up of identical double bonds (
+\emph on
+cf.
+
+\emph default
+ example file tpa10.dat or tpa11.dat).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#HOPPING PARAMETERS 
+\begin_inset Newline newline
+\end_inset
+
+#Number of unique hoppings 
+\begin_inset Newline newline
+\end_inset
+
+2 
+\begin_inset Newline newline
+\end_inset
+
+-2.568,1 # intracell double bond hopping and number of site pairs connected
+ by it
+\begin_inset Newline newline
+\end_inset
+
+2,1 #intracell sites connected by above hopping 
+\begin_inset Newline newline
+\end_inset
+
+-2.232,1 # intercell single bond hopping and number of site pairs connected
+ by it 
+\begin_inset Newline newline
+\end_inset
+
+3,2 #intercell sites connected by above hopping
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In the next example we illustrate the automatic hopping generation option
+ through the keyword HOPGEN, meant for finite systems which can simplify
+ this task tremendously (
+\emph on
+cf.
+
+\emph default
+ example file trigonal_zigzag_benzo6_uhf.dat).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#HOPPING PARAMETERS 
+\begin_inset Newline newline
+\end_inset
+
+#HOPGEN 
+\begin_inset Newline newline
+\end_inset
+
+1 #no.
+ of unique hopping values 
+\begin_inset Newline newline
+\end_inset
+
+1.40 #bond length corresponding to the value of hopping 
+\begin_inset Newline newline
+\end_inset
+
+-2.40 #value of hopping
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The final card specifies whether or not we want to provide nonzero values
+ for site energies.
+ In case we want to provide a nonzero value, it is done through the keyword
+ SITE, explained as below:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#Site energies to be read
+\begin_inset Newline newline
+\end_inset
+
+SITE
+\begin_inset Newline newline
+\end_inset
+
+4 #Number of nonzero site energies/cell
+\begin_inset Newline newline
+\end_inset
+
+3, 0.1 #site 3 is assigned the energy 0.1
+\begin_inset Newline newline
+\end_inset
+
+4, 0.3 #site 4 is assigned the energy 0.3
+\begin_inset Newline newline
+\end_inset
+
+5, -0.2 #site 5 is assigned the energy -0.2
+\begin_inset Newline newline
+\end_inset
+
+6, -0.1 #site 6 is assigned the energy -0.1
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+However, if no nonzero site energies are to be assigned the following data
+ suffices: 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+#Whether site energies are to be read
+\begin_inset Newline newline
+\end_inset
+
+NO SITE
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,56 @@
+#TITLE:PPP calculations for PPV 8
+#HAMILTONIAN TO USE
+PPP
+#PARAMETERIZATION FOR THE PPP HAMILTONIAN
+OHNO
+#PARAMETERS FOR THE PPP HAMILTONIAN(if PARA, then write u, r0, diel)
+SCREENED
+#CHARGE ON THE SYSTEM
+0
+#TOTAL NO. OF ATOMS IN THE UNIT
+8
+#GIVE THE COORDINATES OF THE ATOMS WITHIN THE ORIGIN
+BEN-XY
+-3.2725,0.575907,0.0
+1.4,0
+BOND
+0.0,0.0,0.0
+1.33,1
+3,-60.d0
+ENDA
+#TYPE OF CALCULATION
+RHF
+#END METHOD CARD
+ENDM
+#TOTAL NO. OF UNITS
+8
+#Read the translation vector if there are more than one units
+6.545  -1.1518138    0.0
+#Check if any atomic operations (such as atom deletion, origin shift) need to be performed
+DELATOM
+2
+63 64
+#CONVERGENCE THRESHOLD
+1.D-8
+#MAXIMUM No. of Iterations
+100
+#DAMPING of the Fock matrix
+NODAMP
+#HOPPING PARAMETERS
+#NO. of HOPPING ELEMENTS
+3
+-2.4,6 # hopping within the phenyl ring
+2,1
+3,1
+4,2
+5,3
+6,4
+6,5
+-2.6,1 # intra-cell double bond
+8,7
+-2.2,2 
+7,6    # intra-cell single bond
+9,8    # inter-cell single bond
+#WHETHER SITE ENERGIES ARE TO BE READ?
+NO SITE
+

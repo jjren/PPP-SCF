@@ -1,0 +1,63 @@
+#TITLE:PPP calculations for trigonal zigzag graphene nanodisk with 3 benzene rings
+#HAMILTONIAN TO USE
+PPP
+#PARAMETERIZATION FOR THE PPP HAMILTONIAN
+OHNO
+#PARAMETERS FOR THE PPP HAMILTONIAN(if PARA, then write u, r0, diel)
+SCREENED
+#CHARGE ON THE SYSTEM
+0
+#TOTAL NO. OF ATOMS IN THE UNIT
+13
+#GIVE THE COORDINATES OF THE ATOMS WITHIN THE ORIGIN
+COORD
+6.0000   7.4000  6.0000
+4.7876   8.1000  6.0000
+4.7876   9.5000  6.0000
+6.0000  10.2000  6.0000
+7.2124   9.5000  6.0000
+7.2124   8.1000  6.0000
+8.4248   7.4000  6.0000
+8.4248  10.2000  6.0000
+9.6372   9.5000  6.0000
+9.6372   8.1000  6.0000
+6.0000  11.6000  6.0000
+8.4248  11.6000  6.0000
+7.2124  12.3000  6.0000
+ENDA
+#TYPE OF CALCULATION
+UHF
+#GIVE NO. OF ORBITALS WITH UP AND DOWN SPINS
+7 6
+#CIPREP CALCULATIONS TO BE DONE
+CIPREP
+1    # alpha or up spin orbitals to be used
+0 0  # no. of occ. orbitals to be frozen, flag for freezing
+0 0  # no. of vir. orbitals to be deleted, flag for deletion
+#WHETHER THE DIPOLE MOMENTS ARE NEEDED
+DIPINT
+#HOW MANY COMPONENTS OF DIPOLE MOMENTS
+2
+1 2
+#WHETHER TO PRINT ORBITALS
+PRORB
+#END METHOD CARD
+ENDM
+#TOTAL NO. OF UNITS
+1
+#Check if any atomic operations (such as atom deletion, origin shift) need to be performed
+NODELATOM
+#CONVERGENCE THRESHOLD
+1.D-8
+#MAXIMUM No. of Iterations
+1000
+#DAMPING of the Fock matrix
+NODAMP
+#HOPPING PARAMETERS
+HOPGEN
+1       #no. of unique hopping values 
+1.40    #bond length
+-2.40   #value of hopping
+#WHETHER SITE ENERGIES ARE TO BE READ?
+NO SITE
+

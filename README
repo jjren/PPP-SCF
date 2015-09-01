@@ -1,0 +1,241 @@
+The installation instructions are given at the end of this file.
+The entire package ppp.tar.gz, in addition to this file (README), also
+contains the following set of files:
+
+I) Program files:
+
+Total of 44 Fortran-90 Files
+
+ ppp.f90
+ bands.f90
+ benperp.f90
+ benzen.f90
+ bond.f90
+ c60_gen.f90
+ ci_drv.f90
+ delatm.f90
+ delo_nlo.f90
+ density.f90
+ density_uhf.f90
+ dipcal.f90
+ dipint.f90
+ dipmat.f90
+ dipout.f90
+ ecp.f90
+ fockmat.f90
+ fockmat_uhf.f90
+ fourind.f90
+ foutra_tb.f90
+ ham_sci.f90
+ matel.f90
+ nlo.f90
+ optics.f90
+ orbden.f90
+ printr.f90
+ r_atom.f90
+ read_ei.f90
+ r_site.f90
+ scf_rhf.f90
+ scf_uhf.f90
+ sci.f90
+ spctrm_1ex.f90
+ spctrm_a.f90
+ stline.f90
+ symsite.f90
+ tij_gen.f90
+ tij_readb.f90
+ tij_read.f90
+ twoind.f90
+ vij_cal.f90
+ write_1.f90
+ write_2.f90
+ writorb.f90
+
+
+II) Choice of compiler:
+
+  We have developed this program using the noncommercial version of
+ the Intel Fortran compiler on the Linux operating system. Additionally,
+ we have tested it using the gnu gfortran compiler. We expect it to work 
+ with any Fortran 90 compiler. We are providing Makefiles both for Intel
+ and gfortran compilers. We have not tested this program on the Windows
+ operating system, but, we do not anticipate any problems.  
+ 
+
+III) Libraries:
+
+For the present program to work, it needs to link to LAPACK/BLAS libraries,
+compiled with the same compiler which compiles this program. The location of
+this library is specified by the variable LAPACK in the Makefile. For example,
+with the Intel complier, we used the freely available ACML library of AMD,
+Inc.  In case some other implementation 
+of the library is used, the LAPACK variable in the Makefile should point to 
+its location. Source files of LAPACK/BLAS library can be downloaded from
+NETLIB (http://www.netlib.org), and then can be compiled using the 
+compiler used for compiling our program. 
+
+IV) Makefiles 
+
+Makefile --- Makefile for PC based systems running linux and using
+             Intel Fortran Compiler 
+Makefile_gfort   -- Makefile for gfortran compiler 
+
+
+V) Input preparation guide:
+
+ Please read the file 'manual.pdf' (or 'manual.ps') 
+ to understand how the input file is prepared for the program. 
+ 
+ 
+
+VI) Input output files for example runs: 
+
+The subdirectory 'Examples'  contains two subdirectories: (a) rhf and (b)
+uhf. These sub-directories in turn contain example input and 
+output files, corresponding to the restricted Hartree Fock and unrestricted 
+Hartree Fock calculations discussed in the
+paper. All the input files have extension .dat while the output ones have .out . 
+Additionally some files with extension .xsf are there, which can be used to
+visualize the system using the program XCrySDen. Moreover, there are  few more
+files which are specialized outputs, described in the list below.
+
+
+(A)rhf(subdirectory):
+
+This subdirectory contains the following input files, and the corresponding
+output files (with the extension .out). For example,
+
+ppp8.dat   ---  Input file for total energy calculations of poly-para-phenylene with 
+                eight repeat units.
+
+ppp8.out   ---  Output file for total energy calculations of poly-para-phenylene with
+                eight repeat units.
+ 
+The convention we have adopted for naming the input files is system name, size of
+the system, followed by the type of calculations. However, HF calculations and  
+the standard parameters are taken as the genernal one and therefore, they are not 
+specified in the filename, but in case of other type of calculations such as SCI 
+or Hueckel model or calculations using screened (scr) parameters or something else, 
+type of calculations is usually mentioned in the filename. 
+    
+For example, 
+(i)   acene2_ciprep_orbden.dat => input file for oligoacene with two rings meant for
+                                  performing just HF calculation, orbital density 
+				  analysis, and generating output data for the subsequent 
+				  correlated calculations.
+		   
+(ii)  tpa10_efield.dat => input file for a polyene with ten double bonds, HF
+                          calculations were done in the presence of an external 
+			  electric field.
+			 
+(iii) ppp8.dat => input file for HF calculations for oligo-PPP with eight repeat
+                  units.
+		   
+(iv)  ppv8_scr.dat => input file for HF calculations using the screened
+                      parameters for oligo-PPV with eight repeat units.	   			 
+                                                                               
+ The input files in this subdirectory are
+                             
+acene2_ciprep_orbden.dat -- HF calculations + orbital density analysis + generation 
+                            of output data for the subsequent correlated calculations
+tpa10.dat -- HF calculations
+tpa10_efield.dat -- Calculations in the presence of electric field
+tpa10_sci.dat -- Single CI calculations to be performed
+tpa10_nlo.dat -- HF calculations + generation of output data for the subsequent 
+                 nonlinear optical properties calculations
+tpa10_ciprep.dat -- HF calculations + generation of output data for the 
+                    subsequent correlated calculations
+tpa11.dat -- HF calculations
+ppv8.dat -- HF calculations using the standard parameters
+ppv8_scr.dat -- HF calculations using the screened parameters
+ppp8.dat -- HF calculations 
+ppp_band.dat -- Band structure calculations using the Hueckel model
+ppp8_hueckel_linear_absorption.dat -- Linear optical absorption spectrum at the
+                                      tight binding level
+ppp8_hf_linear_absorption.dat -- Linear optical absorption spectrum at the
+                                 HF level
+ppp8_sci_linear_absorption.dat -- Linear optical absorption spectrum at the
+                                  SCI level
+ppp8_sci_linear_absorption_ef0.001.dat -- Linear optical absorption spectrum at the
+                                          SCI level in the presence of electric
+					  field
+ppp8_sci_scr_linear_absorption.dat -- Linear optical absorption spectrum at the
+                                      SCI level using the screened parameters
+
+
+Apart from the above mentioned input and their correponding output files,
+following additional specialized files are also there in the directory:
+
+spec001_ppp8_hueckel_linear_absorption.dat -- linear optical absorption spectrum for PPP-8 using Hueckel model 
+spec001_ppp8_hf_linear_absorption.dat -- linear optical absorption spectrum for PPP-8 at HF level, using P-P-P model
+spec001_ppp8_sci_linear_absorption.dat -- linear optical absorption spectrum for PPP-8 at SCI level, using P-P-P model
+spec001_ppp8_sci_linear_absorption_ef0.001.dat -- linear optical absorption spectrum computed in the presence of an external 
+                                                  electric field of 0.001 V/Angstrom for PPP-8 at SCI level, using P-P-P model
+spec001_ppp8_sci_scr_linear_absorption.dat -- linear optical absorption spectrum computed using screened parameters in the P-P-P 
+                                              model Hamiltonian, for PPP-8, at SCI level
+ppp_band_structure.plt -- band structure plot for PPP
+acene2_strc.xsf -- XCrySDen input file for the structure of acene2
+ppp8_strc.xsf -- XCrySDen input file for the structure of PPP-8
+ppv8_strc.xsf -- XCrySDen input file for the structure of PPV-8
+tpa11_strc.xsf -- XCrySDen input file for the structure of t-PA with 11 repeat units
+
+
+(B) uhf subdirectory:
+
+This subdirectory contains the following input files, and the corresponding
+output files (with the extension .out). Additionally some files with extension .xsf are there, which can be used to
+visualize the system using the program XCrySDen. As the name of the subdirectory 
+indicates, the files inside it use unrestricted Hartree Fock method for the calculations.
+
+This subdirecory contains some sample input and structure (.xsf) files listed bellow.
+
+trigonal_zigzag_benzo3_uhf.dat -- UHF calculations for the system containing odd number of electrons
+trigonal_zigzag_benzo3_uhf_efield.dat -- UHF calculations in the presence of an external electric field
+trigonal_zigzag_benzo3_uhf_scr.dat -- UHF calculations using screened parameters
+trigonal_zigzag_benzo6_uhf.dat -- UHF calcualtions for the system containing even number of electrons
+trigonal_zigzag_benzo3_strc.xsf -- structure file for the trigonal zigzag graphene nanodisk with three
+                                   benzene rings
+trigonal_zigzag_benzo6_strc.xsf -- structure file for the trigonal zigzag graphene nanodisk with six 
+                                   benzene rings
+
+Installation Instructions:
+
+  i) Untar and unzip the archive ppp.tar.gz.
+
+  ii) Make sure that your default directory has a subdirectory bin. It should
+      also be in your path.
+
+  iii) Install some version of the LAPACK/BLAS libraries. Either obtain the
+       noncommercial versions from AMD or INTEL, or download the source code
+       from www.netlib.org, and compile and install those libraries using the
+       compiler which you intend to use to compile ppp.x on your system. 
+
+  iv) Modify the makefiles provided with this program so that it will compile
+      with the LAPACK/BLAS libraries installed in step (iii).
+
+   v) To compile the ppp.x program, enter subdirectory src and then
+
+      a) type 'make' if you want to use the intel Fortran compiler
+                  
+                OR   
+
+      b) type 'make -f Makefile_gfort' if you want to use the GNU gfortran
+         compiler.
+
+     If the compilation is successful, your bin directory will contain
+     the program ppp.x.
+
+
+  vi) To test the program go to a subdirectory (rhf or uhf) of the 
+      directory Examples 
+      
+
+    In case you want to test the HF calculation for naphthalene using
+    the RHF method, issue command
+
+    ppp.x < ppv8.dat > x.out 
+
+    Upon completion of the program, compare the contents of x.out to
+    the file ppv8.out. They should be very similar to each other.
+         
+        

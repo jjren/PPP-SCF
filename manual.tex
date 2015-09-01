@@ -1,0 +1,753 @@
+%% LyX 1.6.4 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{amstext}
+\usepackage{amssymb}
+\usepackage{babel}
+
+\begin{document}
+
+\title{Input Prepartion Guide for the Program ppp.x}
+
+\maketitle
+All the input data is written in the free format to minimize errors.
+Therefore, before each important input card, there is a compulsory
+comment line to make the input self explanatory. It is irrelevant
+as to what is written in the comment lines, but, by writing something
+meaningful, one can keep the input process transparent. We do require
+that all the ASCII input cards (not the ones in the comment lines)
+should be in uppercase letters. To distinguish comment lines from
+the input, in this guide we precede each comment line with the character
+'\#', although in actual input files, that is not necessary to use.
+We encourage the user to compare the explanation provided here with
+the actual input files available in the 'examples' subdirectory. Next,
+we explain the preparation of input files card by card. 
+\begin{enumerate}
+\item The input file starts with a title. Thus, the first line is for a
+title of the calculations. A user can give a relevant title so as
+to provide an idea about the calculation or system at the first glance.
+\medskip{}
+\\
+\# Title 
+\item As the purpose of our code is to perform calculations using various
+semi-empirical model Hamiltonians, the first input card is an ASCII
+card describing the model Hamiltonian to be used for the calculations.
+Options are: P-P-P, Hubbard, extended Hubbard, and Hückel.\medskip{}
+\\
+ (a) For a system using P-P-P model, the input card may read:\medskip{}
+\\
+ \# The Hamiltonian to be used\\
+PPP \medskip{}
+\\
+(b) For a system using Hubbard model, the input card may read:\medskip{}
+\\
+ \# The Hamiltonian to be used\\
+HUBBARD\medskip{}
+\\
+(c) For a system using extended Hubbard model, the input card may
+read:\medskip{}
+\\
+ \# The Hamiltonian to be used\\
+EXTHUB \medskip{}
+\\
+(d) For a system using Hückel model, the input card may read:\medskip{}
+\\
+ \# The Hamiltonian to be used\\
+HUECKEL
+\item If P-P-P model Hamiltonian is to be used, one can use various parametrization.
+Thus, our second card is also an ASCII card, stating which parametrization
+is to use. Options are: Ohno, Mataga-Nishimoto, and exponential parametrization.\medskip{}
+\\
+ (a) For Ohno parametrization, the input card may read:\medskip{}
+\\
+ \# Parameterization for the P-P-P Hamiltonian\\
+OHNO\\
+\medskip{}
+\\
+(b) For Mataga-Nishimoto parametrization, the input card may read:\medskip{}
+\\
+ \# Parametrization for the P-P-P Hamiltonian\\
+MATNIS\\
+\medskip{}
+\\
+(c) For exponential parametrization, the input card may read:\medskip{}
+\\
+ \# Parametrization for the P-P-P Hamiltonian\\
+EXP\\
+
+\item The long-range Coulomb potentials in case of Ohno parametrization
+can be parametrized using different sets of parameters, such as standard
+parameters or screened parameters. If STANDARD is given as input card,
+the program automatically takes $U$=11.13d0, $r_{0}$=1.2785884d0,
+and $\kappa_{i,j}$=1.d0, while in case of input card SCREENED, it
+takes $U$, $r_{0}$, and $\kappa_{i,j}$ as 8.d0, 1.2785884d0, and
+2.d0, respectively. However, one can also directly give the parameters.
+If the user opts for Hubbard or extended Hubbard model, then parameters
+should be provided explicitly.\\
+If Ohno parametrization is set as an option then the next card
+will be an ASCII, mentioning the parameters to use.\medskip{}
+\\
+ (a) For standard parameters, the input card may read:\medskip{}
+\\
+ \# Parameters for the Ohno parametrization in the P-P-P Hamiltonian\\
+STANDARD\medskip{}
+\\
+ (b) For screened parameters, the input card may read:\medskip{}
+\\
+ \# Parameters for the Ohno parametrization in the P-P-P Hamiltonian\\
+SCREENED\medskip{}
+\\
+ (c) For other parameters, the input card may read:\medskip{}
+\\
+ \# Parameters for the Ohno parametrization in the P-P-P Hamiltonian\\
+PARA\\
+11.d0,1.28d0,1.d0\\
+\medskip{}
+\\
+If the user wants to use other than Ohno parametrization such as
+Mataga-Nishimoto or exponential then one needs to just provide the
+values of $U$ and $r_{0}$. For example,\\
+\medskip{}
+\\
+ \# Parameters for the Mataga-Nishimoto or exponential parametrization
+in the P-P-P Hamiltonian\\
+11.d0, 1.28d0\\
+\medskip{}
+\\
+If one is using Hubbard model, the value for $U$ should be given
+directly.\medskip{}
+\\
+ 11.d0\medskip{}
+\\
+ In case of extended Hubbard model calculations, the value for
+$U$ and $V$ (nearest neighbours potential) should also be given
+directly.\medskip{}
+\\
+11.d0,3.d0\\
+\medskip{}
+
+\item Next card will read the electric charge (ionicity) on the system.
+The magnitude of the nuclear charges have been defined as unity ($=1$).
+For the neutral system the ionicity will be zero, and so on. \medskip{}
+\\
+For example, in case of $trans$-polyacetylene, the card will read
+as follows\medskip{}
+\\
+\#Charge on the system\\
+0\\
+\medskip{}
+\\
+In order to handle a singly ionized cation the input is:\medskip{}
+\\
+\#Charge on the system\\
+1\\
+\medskip{}
+\\
+while for a singly ionized anion, the input will be:\medskip{}
+\\
+\#Charge on the system\\
+-1
+\item As our code has been framed to handle mainly molecules and polymers,
+the next input card will read the total number of atoms in the unit
+cell, after the comment line. \medskip{}
+\\
+ For example, if we are handling a system having two number of
+atoms in the unit cell, then the card will read \medskip{}
+\\
+\# Total number of atoms in the unit cell\\
+2
+\item Next card deals with the Cartesian coordinates of the different atoms
+in the unit cell, to be provided in the units of $\textrm{\AA}$.
+We have two options to facilitate this: (a) Automatic generation through
+various keywords, (b) by explicitly providing coordinates of each
+atom. First we will describe the keywords involved in the automatic
+generation of coordinates followed by one example illustrating their
+use. \medskip{}
+\\
+ \# Give the coordinates of the atoms involved in the system\\
+\medskip{}
+\\
+ (a) For example, for the benzene ring oriented in parallel direction
+to the conventional orientation, in the $xy$-plane, the input card
+may read:\medskip{}
+\\
+ BEN-XY\\
+\medskip{}
+In case of ring lying in $yz$- or $zx$-plane, one should give card
+as 'BEN-YZ' or 'BEN-ZX', respectively.\medskip{}
+\\
+ The next card will specify the center of the benzene ring. For
+example input, \medskip{}
+\\
+-3.2725,0.575907,0.0 \\
+implies that the phenyl ring is centered at the point (-3.2725,0.575907,0.0),
+in Cartesian coordinates .\\
+\medskip{}
+\\
+The next card must specify the bond length of the hexagon constituting
+the phenyl ring and whether we need to rotate this ring with respect
+to some axis. For example input, \\
+\medskip{}
+\\
+1.4,0\\
+implies that the bond length is 1.4 \AA~and no rotations need
+to be performed on the ring. \\
+\medskip{}
+\\
+If instead this input is like:\\
+ \medskip{}
+\\
+1.4,2 \\
+3,-90.d0\\
+ 2,30.d0\\
+which implies that the C--C bond length in the ring is 1.4 \AA,
+which will undergo two subsequent rotations. First rotation is a clockwise
+one by $90^{\circ}$ about the $z$-axis, followed by second counter
+clockwise rotation by $30^{\circ}$ about the $y$-axis. For example,
+in an entry of the type 3, -90.d0, first number denotes the axis of
+the rotation, while the second number denotes the angle of the rotation.
+\\
+\medskip{}
+\\
+ (b) For a benzene ring oriented in perpendicular direction to
+the conventional orientation, in the $xy$-plane, the keyword will
+be:\medskip{}
+\\
+BENP-XY\medskip{}
+\\
+and rest of the input will be identical to the case of BEN-XY,
+discussed above. \medskip{}
+\\
+(c) For generating a bond (a unit consisting of two atoms separated
+by a distance) whose location is specified by the coordinates of the
+bond center, the input card is:\medskip{}
+\\
+BOND\medskip{}
+\\
+ Next to this card, the user should specify origin, bond length
+and number of rotations to be performed on the bond because by default
+the bond is assumed to be along the $x$-axis. Rotations, if desired,
+are performed keeping the center fixed. Positive angles imply counter-clockwise
+rotations, while the negative angles denote clockwise rotations. For
+example input, \medskip{}
+\\
+1.0,0.0,0.0\\
+1.33,1\\
+3,-60.d0\\
+will initially generate a bond centered at the Cartesian coordinates
+(1.0, 0.0, 0.0) of length 1.33 \AA along the $x$-axis, then subsequently
+it will be rotated with respect to the $z$-axis by $60^{\circ}$
+angle (clockwise).\\
+\medskip{}
+\\
+(d) For generating a bond whose first atom lies at the user specified
+location (as against the center lying at the user specified location
+in case of the BOND keyword), an alternative input card called LINE
+is provided:\medskip{}
+\\
+LINE\medskip{}
+\\
+ rest of the inputs are identical to those needed with the keyword
+BOND.\\
+\medskip{}
+\\
+(e) Keyword ATOM is provided to generate a single atomic site located
+at the user specified coordinates. The input:\medskip{}
+\\
+ATOM\\
+ 0.0,0.0,0.0\\
+will generate an atomic site located at the origin.\\
+\medskip{}
+\\
+(f) A keyword C60 is provided to generate the atomic coordinates
+of a bond alternating fullerene C$_{60}$. For example the input,\medskip{}
+\\
+C60\\
+1.45,1.35\\
+1.0,1.0,1.0\\
+will generate the coordinated of 60 carbon atoms constituting a
+fullerene molecule center located at point (1.0,1.0,1.0), with single
+and double bond lengths, 1.45 \AA and 1.35 \AA respectively. \\
+\medskip{}
+\\
+(g) If one does not want to use the above mentioned keywords and
+straight away wants to provide Cartesian coordinates of all the atoms
+located in the system, keyword COORD should be used. For example input,\medskip{}
+\\
+COORD\\
+0.0,0.0,0.0\\
+1.4,0.0,0.0\\
+0.0,1.4,0.0\\
+1.4,1.4,0.0\\
+will generate a system with four atoms located at positions (0.0,0.0,0.0),
+(1.4,0.0,0.0), (0.0,1.4,0.0), and (1.4,1.4,0.0).\\
+\medskip{}
+\\
+(h) In all the cases the end of the inputs for the atomic coordinates
+generation is signalled by the keyword ENDA. \medskip{}
+\\
+ENDA\\
+\\
+\medskip{}
+\\
+Next we provide couple of examples of coordinate inputs which will
+illustrate the use of these keywords. The first example specifies
+the generation of the atomic coordinates of a unit cell of the polymer
+phenyl disubstituted polyacetylene (PDPA), considered in several of
+our papers (\emph{e.g.}, P. Sony and A. Shukla, Phys. Rev. B 71 (2005)
+165204.). This input illustrates the use of the some of the keywords
+discussed above.\\
+ \\
+BEN-XY\\
+-0.577485,3.289479,0.0\\
+1.4,2\\
+3,-90.d0\\
+2,30.d0\\
+BOND\\
+0.0,0.0,0.0\\
+1.35,1\\
+3,-31.18125\\
+BEN-XY \\
+0.577485,-3.289479,0.0\\
+1.4,2\\
+3,-90.d0\\
+2,30.d0\\
+ENDA\\
+\\
+The next example illustrates a case of a benzene ring centered
+at (-2.4248,1.4000,0.0000), where atomic coordinates are provided
+directly.\\
+\\
+COORD\\
+2.42480 -2.80000 0.00000\\
+-3.63720 -2.10000 0.00000\\
+-3.63720 -0.70000 0.00000\\
+-2.42480 0.00000 0.00000\\
+-1.21240 -0.70000 0.00000\\
+-1.21240 -2.10000 0.00000\\
+ENDA\\
+
+\item The next card is again an ASCII card, which will contain information
+regarding the type of calculations one wants to perform. \medskip{}
+\\
+\# Type of Calculations\medskip{}
+\\
+(a) For example, if one wants to do restricted Hartree-Fock calculations,
+then the input card should be:\medskip{}
+\\
+RHF\\
+\medskip{}
+\\
+(b) In case of unrestricted Hartree-Fock calculations, the input
+card will be:\medskip{}
+\\
+UHF\\
+\medskip{}
+\\
+For the UHF card above additional input specifying the number of
+up spin (nalpha) and down spins (nbeta) electrons is essential\\
+\medskip{}
+\\
+\#Number of up and down spin electrons\\
+7, 6\\
+The input above implies that the system contains 13 electrons in
+all, 7 of which are of up spin and remaining 6 of down spin.\\
+\medskip{}
+\\
+(c) If followed by RHF calculations one wants to perform a single
+CI calculation, the corresponding input card is:\medskip{}
+\\
+SCI\\
+\medskip{}
+\\
+The following example illustrates a situation where both RHF and
+SCI calculations are performed.\\
+\\
+\#TYPE OF CALCULATION\\
+RHF\\
+\#SCI CALCULATIONS TO BE PERFORMED\\
+SCI \\
+\medskip{}
+\\
+(d) The input card OPTICS should be used when one wants to perform
+calculations of linear optical absorption on the given system. At
+present this card cannot be used with a UHF calculation. Keyword OPTICS
+is to be followed by $d\omega$,$\omega_{min}$,$\omega_{max}$,$\Gamma$,
+$scale$, where $d\omega$ , represents the frequency step, $\omega_{min}/\omega_{max}$
+represent minimum/maximum range of frequencies for which the spectrum
+is to be computed, while $\Gamma$ is the line width of the excited
+states, and $scale$ is a number which can be used to convert the
+energy unit from the default eVs to a unit of user's choice. If the
+energy unit of eVs is to be used then this number can be given to
+be 1.0, 0.0, or any negative number. For single particle calculations
+such as Hückel model or RHF one needs to specify that from how many
+reference states we want to compute the linear absorption spectrum.
+Thus, one can compute both the ground state, as well as excited state
+absorptions. For excited states absorption, at present we are restricted
+to only those excited states which can be obtained by single excitations
+from the ground state. The input format is:\medskip{}
+\\
+\#OPTICS TO BE PERFORMED\\
+OPTICS\\
+\#Read the number of dipole moment components needed and line-width
+parameters\\
+3 \# dimensions\\
+1,2,3 \# directions\\
+0.1, 0.0, 10.0, 0.01, 1.0 \# $\Gamma$, $\omega_{min}$,$\omega_{max}$,
+$d\omega$, scale\\
+\#From how many states one wants to compute linear absorption,
+'0' implies ground state\\
+1 \# no. of states from which absorption will be computed\\
+0 \# this implies that absorption is computed from the ground state\\
+\medskip{}
+\\
+If the state from which absorption is to be computed is not the
+ground state but an excited state (\emph{i.e.}, not '0', but '1'),
+then we need to specify the orbitals in which holes and electrons
+exists to characterize the excited state in question. The input will
+be: \\
+\medskip{}
+\\
+\#From how many states one wants to compute linear absorption,
+'0' implies ground state\\
+1 \# no. of states from which absorption will be computed\\
+1 \# this implies that absorption is computed from the excited
+state\\
+4, 5 \# excited state has a hole in orbital 4 and an electron in
+orbital 5\\
+\medskip{}
+\\
+The above inputs specifies the linear absorption calculations in
+which all the three Cartesian components of the transition dipole
+will be used and the spectrum will be computed in the range from 0.0
+to 10.0 eV in the steps of 0.01 eV with a linewidth of 0.1 eV for
+the Hückel model or RHF calculations. In the first case the absorption
+is from the ground state and in the second case it is from an excited
+state.\\
+\\
+If optical absorption spectrum is to be computed for an SCI calculations
+then the input will be like: \\
+ \\
+\#TYPE OF CALCULATION \\
+RHF \\
+\#SCI CALCULATIONS TO BE PERFORMED \\
+SCI \\
+\#OPTICS TO BE PERFORMED \\
+OPTICS \\
+\#GIVE THE NUMBER OF DIPOLE MOMENTS \\
+3 \#dimensions\\
+1 2 3 \#directions\\
+0.1 0.0 20.0 0.01 1.0 \# $\Gamma$, $\omega_{min}$,$\omega_{max}$,
+$d\omega$, scale\\
+\#Read the number of states and the states from which absorption
+is to be computed \\
+1 \# no. of states from which absorption will be computed\\
+1 \# this implies that absorption is computed from the excited
+state, '0' will imply the absorption from the ground state\\
+\\
+The absorption spectrum in all the cases is written in a file spec001.dat,
+which can plotted using graphical programs such as gnuplot or xmgrace.\\
+\medskip{}
+\\
+(e) If one wants to perform nonlinear optical (NLO) susceptibility
+calculations within a single particle model such as Hückel model or
+RHF model, the occupied and unoccupied orbital energies, as well as
+dipole matrix elements among them are needed. This data in turn can
+be provided to a separate computer program meant for calculating various
+NLO susceptibilities. By invoking the NLO card, the user can get the
+above mentioned data written in a separate file called NLO001.DAT.
+We had written a separate program (not provided with this package)
+meant for computing these NLO susceptibilities for which file NLO001.DAT
+served as an input. The input in such a case will be: \medskip{}
+\\
+\#NON LINEAR OPTICS TO BE PERFORMED\\
+NLO\\
+\#Read the components of dipole moments\\
+2 \# dimensions\\
+1,2 \# directions\\
+\medskip{}
+\\
+In order to reduce the size of dipole matrix elements, one can
+delete the outermost occupied and virtual orbitals choosing the card
+'ORBDEL'.\\
+\medskip{}
+\\
+\# Delete occupied and valence orbitals\\
+ORBDEL\\
+1,10 \# delete occupied orbitals from 1 to 10\\
+21,30 \# delete virtual orbitals from 21 to 30\\
+\medskip{}
+\\
+As this is an essential card, so if in case no orbital has to be
+deleted, then give the input card:\\
+\medskip{}
+\\
+NOORBDEL\\
+\medskip{}
+\\
+(f) Orbital charge density analysis can be done by giving input
+cards as:\medskip{}
+\\
+ORBDEN\\
+0,2 \#providing the density flag and no. of sites.\\
+7,8 \#site numbers for which the charge density is desired\\
+\medskip{}
+\\
+If '0' is assigned to the density flag, then only the specified
+sites will be analyzed. While if it is assigned a value '1', the sites
+given along with their periodic copies will be analyzed.\\
+\medskip{}
+\\
+(g) The band structure calculations can be performed using the
+Hückel model Hamiltonian. To opt for the band structure calculations,
+the input cards will be:\\
+\medskip{}
+\\
+BAND\\
+-1.0,1.0,0.01 \#lower limit and upper limit of the $k$-values
+(crystal momentum), and the differential step\\
+\medskip{}
+\\
+(h) If the user wants to perform post HF correlated calculations
+such as FCI, QCI, or MRSDCI, etc., using some other computer program,
+various files containing the data such as one- and two-electron integrals
+will be required. The card CIPREP serves as the flag to the program
+to prepare these files, which are written in the binary format. Thus,
+the input card will be given as:\\
+\medskip{}
+\\
+CIPREP\\
+\medskip{}
+\\
+In case of UHF calculations one needs to specify first that which
+type of orbitals will be used for the correlation treatment. For this
+a flag is provided, whose value is assigned '1' for using the alpha-type
+orbitals, and '2' for the beta-type orbitals.\\
+\medskip{}
+\\
+1\\
+\medskip{}
+\\
+If RHF calculations are to be performed then the above line should
+be skipped. \\
+\\
+User can also freeze the occupied orbitals and delete the virtual
+orbitals, thus, can perform correlated calculations choosing a specified
+set of occupied and virtual orbitals. The input for this can be like
+this:\\
+\medskip{}
+\\
+12,0 \# no. of occupied orbitals to be frozen (1$^{\text{st}}$
+twelve orbitals will be freezed), flag for freezing\\
+11,0 \# no. of virtual orbitals to be deleted, flag for deletion\\
+23,33 \# from 23$^{\text{rd}}$ to 33$^{\text{rd}}$ orbital are
+to be deleted.\\
+\medskip{}
+\\
+If the electric dipole integrals are needed along with the CIPREP
+option (possibly with the aim of performing optical properties calculations
+at the correlated level), card DIPINT should be used.\\
+\medskip{}
+\\
+\# Dipole moment calculation\\
+DIPINT\\
+\#How many components of dipole moments\\
+2 \# dimensions\\
+1,2 \# directions\\
+\medskip{}
+If no dipole integral calculation is desired, the input should be:\medskip{}
+\\
+\# Dipole moment calculation\\
+NODIPINT\medskip{}
+\\
+(i) The orbitals can be printed in the ASCII format in the output
+file by using the card:\\
+\medskip{}
+\\
+\#To print the orbitals\\
+PRORB\\
+\medskip{}
+\\
+However, this card should be used with caution because, for large
+systems, the orbital related data can be huge.\\
+\medskip{}
+\\
+(j) In order to calculate dielectric response properties or electro-absorption
+spectrum, one needs to solve the HF equation in the presence of a
+finite external electric field. The input card for such calculations
+will be:\\
+\medskip{}
+\\
+\#Calculations to be performed in the presence of finite electric
+field\\
+EFIELD\\
+0.001 0.0 0.0 \#components of electric field in $x$, $y$, and
+$z$-directions, respectively.\\
+\medskip{}
+\\
+The numbers specifying the components of the external electric
+field above are in the units of V/\AA.\\
+\medskip{}
+\\
+(k) After specifying all the methods which are to be used during
+the calculations, the end of this input is specified by the following
+card:\\
+\medskip{}
+\\
+\#End Method Card\\
+ENDM
+\item Next card provides the total number of unit cells and should be a
+positive integer. For example, for generating an oligomer with eight
+units (unit cell coordinate input is specified above), the input will
+read:\\
+\medskip{}
+\\
+\#Total number of units\\
+8\\
+
+\item If the number of units cells specified in the previous card is greater
+than one, translational vector needs to be provided as of the type
+below:\\
+2.4253866 0.0 0.0\\
+
+\item Atomic operations such as atom deletion can also be used while generating
+a given molecule. This operation is useful when for a system containing
+more than one unit cell, periodic copies lead to more atoms in the
+system than what is needed. For example, for oligomers of polymers
+such as PPV and polyacenes, this is usually the case.\\
+\medskip{}
+\\
+For the case of naphthalene atom numbers 11 and 12 need to be deleted
+(\emph{cf.} example input files acene2\_ciprep\_orbden.dat).\\
+\\
+\#If any atomic operations (such as atom deletion) need to be performed
+\\
+DELATOM\\
+2 \# number of atoms to be deleted\\
+11, 12 \# atom numbers 11 and 12 are deleted\\
+\medskip{}
+\\
+\#If no atom is to be deleted, the input card should be given as:
+\\
+NODELATOM\\
+
+\item The convergence threshold set by the user to achieve convergence in
+total energy in the units of eV, will be given as: \\
+\medskip{}
+\\
+\#Convergence threshold\\
+1.D-8\\
+
+\item The maximum number of iterations allowed to achieve convergence can
+be given as follows: \medskip{}
+\\
+\# Maximum iterations allowed\\
+100\\
+
+\item Sometimes, because of the oscillatory nature of total energy during
+the SCF iterations it becomes difficult to achieve convergence. However,
+in those cases one usually utilizes the techniques of Fock matrix
+mixing (which is also popularly called damping). This can be invoked
+by the keyword DAMP to be followed by the input value of parameter
+$xdamp$, which denotes the fractional amount of damping used in the
+formula explained below. \medskip{}
+\\
+$F^{(i)}=xdamp\: F^{(i)}+(1-xdamp)\: F^{(i-1)}$\medskip{}
+\\
+where $F^{(i)}$ is the Fock matrix in the i-th iteration, where
+$0\leqq xdamp\leqq1$. \medskip{}
+\\
+For example, if one intends to use $50\%$ mixing the input will
+read:\\
+\\
+\#DAMPING WILL BE USED\\
+DAMP\\
+0.5\\
+\\
+if in case no Fock matrix mixing is required, then the input file
+reads,\medskip{}
+\\
+\# NO DAMPING TO BE USED\\
+NODAMP \\
+
+\item Next input consists of data related to the hopping matrix elements.
+The input differs slightly for finite systems as compared to the case
+when band structure for an infinite polymer is desired within the
+Hückel model. For finite systems one has the option of explicitly
+providing the hopping matrix elements or for their automatic generation
+by attaching a given hopping value with a certain bond distance. Below
+we provide examples to illustrate all the three cases. \\
+\medskip{}
+\\
+First we present the example input associated with the band structure
+calculation of the polymer PPP, within the Hückel model (\emph{cf.}
+example file ppp\_band.dat)\\
+\medskip{}
+\\
+\#Read the no. of unique intracell and intercell hopping matrix
+elements\\
+1 1 \#number of unique intracell and intercell hoppings\\
+-2.4,6 \# value of intracell hopping and number of site pairs connected
+by it \\
+2,1 \\
+3,1 \\
+4,2 \\
+5,3 \\
+6,4 \\
+6,5 \\
+-2.23,1 \# value of intercell hopping and its connectivity \\
+6,1,1 \# site pair which is connected by it, followed by the primitive
+vector of the cell\\
+\medskip{}
+\\
+Next we present the example of a bond alternated polyene oligomer,
+made up of identical double bonds (\emph{cf.} example file tpa10.dat
+or tpa11.dat).\\
+\\
+\#HOPPING PARAMETERS \\
+\#Number of unique hoppings \\
+2 \\
+-2.568,1 \# intracell double bond hopping and number of site pairs
+connected by it\\
+2,1 \#intracell sites connected by above hopping \\
+-2.232,1 \# intercell single bond hopping and number of site pairs
+connected by it \\
+3,2 \#intercell sites connected by above hopping\\
+\medskip{}
+\\
+In the next example we illustrate the automatic hopping generation
+option through the keyword HOPGEN, meant for finite systems which
+can simplify this task tremendously (\emph{cf.} example file trigonal\_zigzag\_benzo6\_uhf.dat).\\
+\\
+\#HOPPING PARAMETERS \\
+\#HOPGEN \\
+1 \#no. of unique hopping values \\
+1.40 \#bond length corresponding to the value of hopping \\
+-2.40 \#value of hopping\\
+\\
+
+\item The final card specifies whether or not we want to provide nonzero
+values for site energies. In case we want to provide a nonzero value,
+it is done through the keyword SITE, explained as below:\\
+\medskip{}
+\\
+\#Site energies to be read\\
+SITE\\
+4 \#Number of nonzero site energies/cell\\
+3, 0.1 \#site 3 is assigned the energy 0.1\\
+4, 0.3 \#site 4 is assigned the energy 0.3\\
+5, -0.2 \#site 5 is assigned the energy -0.2\\
+6, -0.1 \#site 6 is assigned the energy -0.1\\
+\medskip{}
+\\
+However, if no nonzero site energies are to be assigned the following
+data suffices: \\
+\medskip{}
+\\
+\#Whether site energies are to be read\\
+NO SITE
+\end{enumerate}
+
+\end{document}

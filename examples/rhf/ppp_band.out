@@ -1,0 +1,25 @@
+ #TITLE:BAND                                                                    
+  
+ Hueckel Hamiltonian to be used
+ U=   0.0000
+ The system is uncharged
+ Total no. of atoms/cell:   6
+ Band structure to be computed with periodic boundary conditions
+ Band structure will be calculated for the Hueckel model
+ Total no. of sites:   6
+ Total no. of electrons:   6
+ done with input
+  
+Site #     X-Coord     Y-Coord    Z-coord
+  
+    1     -1.40000     0.00000     0.00000
+    2     -0.70000     1.21244     0.00000
+    3     -0.70000    -1.21244     0.00000
+    4      0.70000     1.21244     0.00000
+    5      0.70000    -1.21244     0.00000
+    6      1.40000     0.00000     0.00000
+  
+  
+ No. of Unique intracell hopping elements read=      1
+ No. of Unique intercell hopping elements read=      1
+  
